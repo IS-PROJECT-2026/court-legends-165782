@@ -2,17 +2,11 @@
   box-sizing: border-box;
 }
 
-html {
+body {
+  margin: 0;
   font-family: Arial, sans-serif;
 }
 
-body {
-  margin: 0;
-  min-width: 320px;
-}
-
-button,
-input,
-select {
-  font: inherit;
+main {
+  padding: 40px;
 }
