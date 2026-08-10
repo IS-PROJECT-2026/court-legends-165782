@@ -1,10 +1,10 @@
-// Basic template
-import React from 'react'
-
-export default function App() {
+function App() {
   return (
-    <div>
+    <main>
       <h1>Court Legends</h1>
-    </div>
+      <p>Players. Rivalries. Records.</p>
+    </main>
   )
 }
+
+export default App
