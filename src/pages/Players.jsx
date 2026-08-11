@@ -1,8 +1,13 @@
+import players from '../data/players'
+
 function Players() {
   return (
     <section>
       <h1>Players</h1>
-      <p>Explore the players of Court Legends.</p>
+
+      {players.map((player) => (
+        <p key={player.id}>{player.name}</p>
+      ))}
     </section>
   )
 }
