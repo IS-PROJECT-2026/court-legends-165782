@@ -7,6 +7,7 @@ import Home from './pages/Home'
 import Players from './pages/Players'
 import Compare from './pages/Compare'
 import Rivalries from './pages/Rivalries'
+import PlayerProfile from './pages/PlayerProfile'
 
 function App() {
   return (
@@ -19,6 +20,10 @@ function App() {
           <Route path="/players" element={<Players />} />
           <Route path="/compare" element={<Compare />} />
           <Route path="/rivalries" element={<Rivalries />} />
+          <Route
+            path="/players/:playerId"
+            element={<PlayerProfile />}
+          />
         </Routes>
       </main>
 
