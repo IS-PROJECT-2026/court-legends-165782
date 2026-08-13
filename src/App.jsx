@@ -24,6 +24,7 @@ function App() {
             path="/players/:playerId"
             element={<PlayerProfile />}
           />
+          
         </Routes>
       </main>
 
