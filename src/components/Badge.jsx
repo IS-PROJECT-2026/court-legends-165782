@@ -1,5 +1,5 @@
-function Badge({ label, tone = 'default' }) {
-  return <span className={`badge badge-${tone}`}>{label}</span>
+function Badge({ code }) {
+  return <span className="badge">{code}</span>
 }
 
 export default Badge
