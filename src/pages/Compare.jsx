@@ -20,33 +20,26 @@ function Compare() {
     playerOne.id === playerTwo.id
 
   return (
-    <main>
-      <h1>Compare Players</h1>
-
-      <p>
-        Select two players to compare their career records.
-      </p>
+    <div className="page">
+      <div className="page-head">
+        <span className="eyebrow">Head-to-head</span>
+        <h1>Compare players</h1>
+        <p>Select two players to compare their career records.</p>
+      </div>
 
       <div className="comparison-selectors">
         <div>
-          <label htmlFor="player-one">
-            Player 1
-          </label>
+          <label htmlFor="player-one">Player 1</label>
 
           <select
             id="player-one"
             value={playerOneId}
             onChange={(event) => setPlayerOneId(event.target.value)}
           >
-            <option value="">
-              Select Player 1
-            </option>
+            <option value="">Select player 1</option>
 
             {players.map((player) => (
-              <option
-                key={player.id}
-                value={player.id}
-              >
+              <option key={player.id} value={player.id}>
                 {player.name}
               </option>
             ))}
@@ -54,24 +47,17 @@ function Compare() {
         </div>
 
         <div>
-          <label htmlFor="player-two">
-            Player 2
-          </label>
+          <label htmlFor="player-two">Player 2</label>
 
           <select
             id="player-two"
             value={playerTwoId}
             onChange={(event) => setPlayerTwoId(event.target.value)}
           >
-            <option value="">
-              Select Player 2
-            </option>
+            <option value="">Select player 2</option>
 
             {players.map((player) => (
-              <option
-                key={player.id}
-                value={player.id}
-              >
+              <option key={player.id} value={player.id}>
                 {player.name}
               </option>
             ))}
@@ -80,11 +66,11 @@ function Compare() {
       </div>
 
       {!playerOne || !playerTwo ? (
-        <p>
+        <p className="empty-state">
           Select two players to compare their career records.
         </p>
       ) : samePlayer ? (
-        <p>
+        <p className="empty-state">
           Please select two different players to compare.
         </p>
       ) : (
@@ -93,7 +79,7 @@ function Compare() {
           playerTwo={playerTwo}
         />
       )}
-    </main>
+    </div>
   )
 }
 

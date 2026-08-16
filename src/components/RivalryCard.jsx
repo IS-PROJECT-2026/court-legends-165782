@@ -7,14 +7,14 @@ function RivalryCard({ rivalry }) {
 
       <p>{rivalry.description}</p>
 
-      <p>
-        Head-to-head:{' '}
-        {rivalry.headToHead.playerOne} -{' '}
-        {rivalry.headToHead.playerTwo}
-      </p>
+      <div className="h2h">
+        <span className="score">{rivalry.headToHead.playerOne}</span>
+        <span className="sep">&mdash;</span>
+        <span className="score">{rivalry.headToHead.playerTwo}</span>
+      </div>
 
-      <Link to={`/rivalries/${rivalry.id}`}>
-        View Rivalry
+      <Link to={`/rivalries/${rivalry.id}`} className="view-link">
+        View rivalry
       </Link>
     </article>
   )

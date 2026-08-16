@@ -11,17 +11,13 @@ function RivalryDetail() {
 
   if (!rivalry) {
     return (
-      <main>
-        <h1>Rivalry Not Found</h1>
-
-        <p>
-          The rivalry you are looking for does not exist.
-        </p>
-
-        <Link to="/rivalries">
-          Back to Rivalries
+      <div className="page">
+        <h1>Rivalry not found</h1>
+        <p>The rivalry you are looking for does not exist.</p>
+        <Link to="/rivalries" className="back-link">
+          &larr; Back to rivalries
         </Link>
-      </main>
+      </div>
     )
   }
 
@@ -34,49 +30,50 @@ function RivalryDetail() {
   )
 
   return (
-    <main>
-      <Link to="/rivalries">
-        ← Back to Rivalries
+    <div className="page">
+      <Link to="/rivalries" className="back-link">
+        &larr; Back to rivalries
       </Link>
 
       <h1>{rivalry.title}</h1>
-
       <p>{rivalry.description}</p>
 
-      <section>
-        <h2>Head-to-Head</h2>
+      <h2>Head-to-head</h2>
 
-        <div>
-            <Link to={`/players/${playerOne.id}`}>
-                {playerOne.name}
-            </Link>
-            <p>{rivalry.headToHead.playerOne} wins</p>
+      <div className="h2h-panel">
+        <div className="h2h-side">
+          <Link to={`/players/${playerOne.id}`}>
+            {playerOne.name}
+          </Link>
+          <p className="wins">{rivalry.headToHead.playerOne}</p>
         </div>
 
-        <div>
-            <Link to={`/players/${playerTwo.id}`}>
-                {playerTwo.name}
-            </Link>
-            <p>{rivalry.headToHead.playerTwo} wins</p>
+        <span className="h2h-vs">wins</span>
+
+        <div className="h2h-side">
+          <Link to={`/players/${playerTwo.id}`}>
+            {playerTwo.name}
+          </Link>
+          <p className="wins">{rivalry.headToHead.playerTwo}</p>
         </div>
-      </section>
+      </div>
 
-      <section>
-        <h2>Notable Meetings</h2>
+      <h2>Notable meetings</h2>
 
-        {rivalry.notableMeetings.map((meeting, index) => (
-            <article key={index}>
-                <h3>{meeting.event}</h3>
+      {rivalry.notableMeetings.map((meeting, index) => (
+        <article key={meeting.event} className="meeting">
+          <span className="meeting-tag">
+            Match {String(index + 1).padStart(2, '0')}
+          </span>
 
-                <p>
-                    <strong>Winner:</strong> {meeting.winner}
-                </p>
+          <h3>{meeting.event}</h3>
 
-            <p>{meeting.description}</p>
-          </article>
-        ))}
-      </section>
-    </main>
+          <p className="winner">Winner: {meeting.winner}</p>
+
+          <p>{meeting.description}</p>
+        </article>
+      ))}
+    </div>
   )
 }
 

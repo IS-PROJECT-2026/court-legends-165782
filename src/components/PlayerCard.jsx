@@ -3,20 +3,24 @@ import { Link } from 'react-router-dom'
 function PlayerCard({ player }) {
   return (
     <article className="player-card">
-      <img
-        src={player.image}
-        alt={player.name}
-      />
+      <div className="media">
+        <span className="tag-code">{player.countryCode}</span>
+        <img src={player.image} alt={player.name} />
+      </div>
 
-      <h2>{player.name}</h2>
+      <div className="body">
+        <h2>{player.name}</h2>
+        <p className="style">{player.playingStyle}</p>
 
-      <p>{player.country}</p>
+        <div className="quick-stat">
+          <span className="n">{player.grandSlamTitles}</span>
+          <span className="u">Grand Slams</span>
+        </div>
 
-      <p>{player.playingStyle}</p>
-
-      <Link to={`/players/${player.id}`}>
-        View Profile
-      </Link>
+        <Link to={`/players/${player.id}`} className="view-link">
+          View profile
+        </Link>
+      </div>
     </article>
   )
 }

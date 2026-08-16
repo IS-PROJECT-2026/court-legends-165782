@@ -1,15 +1,44 @@
-import { Link } from 'react-router-dom'
+import { useState } from 'react'
+import { NavLink } from 'react-router-dom'
 
 function Navbar() {
+  const [isOpen, setIsOpen] = useState(false)
+
+  const closeMenu = () => setIsOpen(false)
+
   return (
     <nav>
-      <Link to="/">Court Legends</Link>
+      <div className="nav-row">
+        <NavLink to="/" className="brand" onClick={closeMenu}>
+          Court Legends
+        </NavLink>
 
-      <div>
-        <Link to="/">Home</Link>
-        <Link to="/players">Players</Link>
-        <Link to="/compare">Compare</Link>
-        <Link to="/rivalries">Rivalries</Link>
+        <button
+          type="button"
+          className="nav-toggle"
+          aria-label="Toggle menu"
+          aria-expanded={isOpen}
+          onClick={() => setIsOpen((open) => !open)}
+        >
+          <span />
+          <span />
+          <span />
+        </button>
+      </div>
+
+      <div className={`nav-links${isOpen ? ' open' : ''}`}>
+        <NavLink to="/" onClick={closeMenu}>
+          Home
+        </NavLink>
+        <NavLink to="/players" onClick={closeMenu}>
+          Players
+        </NavLink>
+        <NavLink to="/compare" onClick={closeMenu}>
+          Compare
+        </NavLink>
+        <NavLink to="/rivalries" onClick={closeMenu}>
+          Rivalries
+        </NavLink>
       </div>
     </nav>
   )
