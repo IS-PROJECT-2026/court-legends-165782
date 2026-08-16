@@ -1,6 +1,6 @@
+import { useState } from 'react'
 import players from '../data/players'
 import PlayerCard from '../components/PlayerCard'
-import { useState } from 'react'
 
 function Players() {
   const [searchTerm, setSearchTerm] = useState('')
@@ -18,6 +18,14 @@ function Players() {
     return matchesSearch && matchesGender
   })
 
+  const hasActiveFilters =
+    searchTerm.trim() !== '' || genderFilter !== 'all'
+
+  const clearFilters = () => {
+    setSearchTerm('')
+    setGenderFilter('all')
+  }
+
   return (
     <div className="page">
       <div className="page-head">
@@ -32,11 +40,13 @@ function Players() {
           placeholder="Search players..."
           value={searchTerm}
           onChange={(event) => setSearchTerm(event.target.value)}
+          aria-label="Search players"
         />
 
         <select
           value={genderFilter}
           onChange={(event) => setGenderFilter(event.target.value)}
+          aria-label="Filter players by gender"
         >
           <option value="all">All players</option>
           <option value="men">Men</option>
@@ -50,13 +60,35 @@ function Players() {
       </p>
 
       {filteredPlayers.length === 0 ? (
-        <p className="empty-state">
-          No players found matching "{searchTerm}".
-        </p>
+        <div className="empty-state">
+          <h2>No players found</h2>
+
+          {searchTerm.trim() !== '' ? (
+            <p>
+              No players match "{searchTerm}".
+            </p>
+          ) : (
+            <p>
+              No players match the selected filter.
+            </p>
+          )}
+
+          {hasActiveFilters && (
+            <button
+              type="button"
+              onClick={clearFilters}
+            >
+              Clear filters
+            </button>
+          )}
+        </div>
       ) : (
         <div className="player-grid">
           {filteredPlayers.map((player) => (
-            <PlayerCard key={player.id} player={player} />
+            <PlayerCard
+              key={player.id}
+              player={player}
+            />
           ))}
         </div>
       )}

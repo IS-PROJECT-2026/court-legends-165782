@@ -14,10 +14,16 @@ function Compare() {
     (player) => player.id === playerTwoId
   )
 
+  const bothSelected = playerOneId !== '' && playerTwoId !== ''
+
   const samePlayer =
     playerOne &&
     playerTwo &&
     playerOne.id === playerTwo.id
+
+  const invalidSelection =
+    (playerOneId !== '' && !playerOne) ||
+    (playerTwoId !== '' && !playerTwo)
 
   return (
     <div className="page">
@@ -39,7 +45,10 @@ function Compare() {
             <option value="">Select player 1</option>
 
             {players.map((player) => (
-              <option key={player.id} value={player.id}>
+              <option
+                key={player.id}
+                value={player.id}
+              >
                 {player.name}
               </option>
             ))}
@@ -57,7 +66,10 @@ function Compare() {
             <option value="">Select player 2</option>
 
             {players.map((player) => (
-              <option key={player.id} value={player.id}>
+              <option
+                key={player.id}
+                value={player.id}
+              >
                 {player.name}
               </option>
             ))}
@@ -65,14 +77,29 @@ function Compare() {
         </div>
       </div>
 
-      {!playerOne || !playerTwo ? (
-        <p className="empty-state">
-          Select two players to compare their career records.
-        </p>
+      {invalidSelection ? (
+        <div className="empty-state">
+          <h2>Unable to compare players</h2>
+          <p>
+            One of the selected players could not be found.
+            Please select the players again.
+          </p>
+        </div>
+      ) : !bothSelected ? (
+        <div className="empty-state">
+          <h2>Select two players</h2>
+          <p>
+            Choose a player in both selectors to see their
+            career comparison.
+          </p>
+        </div>
       ) : samePlayer ? (
-        <p className="empty-state">
-          Please select two different players to compare.
-        </p>
+        <div className="empty-state">
+          <h2>Choose different players</h2>
+          <p>
+            Please select two different players to compare.
+          </p>
+        </div>
       ) : (
         <ComparisonTable
           playerOne={playerOne}
